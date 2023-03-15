@@ -41,4 +41,13 @@ git remote
 
 git push -u origin master (get in repo)
 
+
+// after updating
+// git status
+// git add .
+// git commit -m "adding back button"
+/// git push
+
+
+
 */
