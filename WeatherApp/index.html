@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="weatherFavicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wave -one">
+
+        </div>
+        <div class="wave -two">
+            
+        </div>
+        <div class="wave -three">
+            
+        </div>
+        <div id="weather">
+            <i class="fas fa-sun" style="color:yellow"></i> 
+        </div>
+        <div class="info">
+            <h2 class="location"><i class="fas fa-street-view"></i> {%location%},{%country%}</h2>
+            <p id="date">Today's Date</p>
+            <h1 class="temp">{%temp%}&deg;C</h1>
+            <h3 class="minMax">{%tempmin%} and {%tempmax%}</h3>
+        </div>
+    </div>
+
+    <script>
+        let weatherCon = document.getElementById('weathercon');
+
+const temStatus = "{%tempStatus%}";
+
+if(temStatus == "Sunny")
+{
+    weatherCon.innerHTML = `<i class="fas fa-sun" style="color:yellow"></i> `;
+}
+else if(temStatus == "Clouds")
+{
+    weatherCon.innerHTML = `<i class="fas fa-cloud" style="color:yellow"></i> `;
+}
+else if(temStatus == "Rainy")
+{
+    weatherCon.innerHTML = `<i class="fas fa-rain" style="color:yellow"></i> `;
+}
+else
+{
+    weatherCon.innerHTML = `<i class="fas fa-cloud" style="color:yellow"></i> `;
+}
+
+const week = ['Sun','Mon','Tue',"Wed","Thur","Fri","Sat"];
+const months = ['Jan','Feb',"Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+
+const getCurrentDay = ()=>{
+    let now = new Date();
+    console.log(now);
+    
+    var  day = week[now.getDay()];
+    var month = months[now.getMonth()] ;
+    var hours = now.getHours();
+    var year = now.getFullYear();
+    var mins = now.getMinutes();
+
+    let perios = "AM";
+    if(hours>11)
+    {
+        perios = "PM";
+        if(hours>12)
+        {
+            hours = hours -12;
+        }
+    }
+    if(mins<10)
+    {
+        mins = "0"+mins;
+    }
+    // return  day + " | " + month + " " + year + " | " + hours+":"+mins+perios ;
+    return `${day} | ${month} ${year} | ${hours}:${mins}${perios}`;
+}
+
+document.getElementById('date').innerHTML = getCurrentDay();
+    </script>
+
+    <!-- <script src="index.js"></script> -->
+</body>
+</html>
